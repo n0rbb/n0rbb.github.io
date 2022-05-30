@@ -4,8 +4,22 @@
         <meta charset = "utf-8">
         <title>Hola</title>
         <link rel = "stylesheet" type = "text/css" href = "style.css">
+        <script type="text/javascript">
+            function daysDifference($startDate, $endDate) {
+              oneDay = 24*60*60*1000;
+              return Math.ceil(($endDate.getTime() - $startDate.getTime()) / oneDay);  
+            }
+        
+            // 2015/01/01
+            $startDate = new Date(2022, 4, 31);
+            // 2022/06/22
+            $endDate = new Date(2022, 5, 22);
+            $today = new Date();
+            document.getElementById("counter").innerHTML = 'Day ' + daysDifference($startDate, $today) + ': ' + daysDifference($today, $endDate) + ' days to pass Classical Mechanics.';
+          </script>
     </head>
     <body>
         hello
+        <div id = "counter" />
     </body>
 </html>
