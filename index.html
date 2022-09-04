@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset = "utf-8">
+        <title>Norbb</title>
+        <link rel = "stylesheet" type = "text/css" href = "style.css">
+    </head>
+    <body>
+        <h1>Norbb's website</h1>
+        <div id = "counter" /> 
+        <script type="text/javascript">
+          function daysDifference($startDate, $endDate) {
+            oneDay = 24*60*60*1000;
+            return Math.ceil(($endDate.getTime() - $startDate.getTime()) / oneDay);  
+          }
+      
+         // month goes from 0-11
+          $startDate = new Date(2022, 7, 29);
+          
+          
+          $today = new Date();
+          document.getElementById("counter").innerHTML = 'Now ' + daysDifference($startDate, $today) + ' days Radiohead-free.';
+        </script>
+        
+        <div align = "center">
+            <img src = "http://pa1.narvii.com/6217/928f0710ae2681c8bf3aff1ec63fb011eb65d502_00.gif" alt = "Japanese naval flag gif" />
+        </div>
+    </body>
+</html>
