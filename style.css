@@ -1,8 +1,9 @@
 body{
-    background-color: aquamarine;
+    background-color: lightblue;
 }
 
 h1{
     color: darkblue;
-    text-decoration: underline overline;
+    text-decoration: None;
 }
+
