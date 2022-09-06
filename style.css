@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Tangerine');
+@import url('https://fonts.googleapis.com/css?family=Secular+One');
+
 body{
     background-color: lightblue;
 }
@@ -7,3 +10,33 @@ h1{
     text-decoration: None;
 }
 
+footer{
+    width: 99%;
+    border-top: 2px solid black;
+    position: fixed;
+    bottom: 10px;
+    padding-top: 10px;
+
+}
+
+
+.central, h1, footer{
+    text-align: center;
+}
+
+.central{
+    font-family: 'Tangerine', sans-serif;
+    font-size: 30px;
+}
+
+#counter{
+    font-family: 'Secular One', sans-serif;
+    color: darkblue;
+    font-size: 70px;
+    vertical-align: middle;
+    text-shadow: 2px 2px 2px #333333;
+}
+#counter:hover{
+    color: darkred;
+    cursor: pointer;
+}

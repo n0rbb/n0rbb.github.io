@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Norbb's website</h1>
-        <div id = "counter" /> 
+        <p class = "central">Now <span id = "counter"></span> days without listening to Radiohead.</p>
         <script type="text/javascript">
           function daysDifference($startDate, $endDate) {
             oneDay = 24*60*60*1000;
@@ -19,7 +19,7 @@
           
           
           $today = new Date();
-          document.getElementById("counter").innerHTML = 'Now ' + daysDifference($startDate, $today) + ' days Radiohead-free.';
+          document.getElementById("counter").innerHTML = daysDifference($startDate, $today);
         </script>
         <footer> &copy; Norbert Shackleton, 2022</footer>
     </body>
