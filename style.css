@@ -29,6 +29,8 @@ footer{
     font-size: 30px;
 }
 
+
+
 #counter{
     font-family: 'Secular One', sans-serif;
     color: darkblue;
@@ -37,6 +39,10 @@ footer{
     text-shadow: 2px 2px 2px #333333;
 }
 #counter:hover{
-    color: darkred;
+    color: rebeccapurple;
+    cursor: pointer;
+}
+#counter:active{
+    color: #FFFFFF;
     cursor: pointer;
 }
