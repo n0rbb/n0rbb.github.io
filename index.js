@@ -8,3 +8,7 @@ function count() {
     $today = new Date();
     document.getElementById("counter").innerHTML = daysDifference($startDate, $today);
 }
+
+function loss() {
+    alert("Friendly reminder that you may be playing THE GAME.")
+}
