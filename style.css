@@ -38,11 +38,3 @@ p{
     vertical-align: middle;
     text-shadow: 2px 2px 2px #333333;
 }
-#counter:hover{
-    color: rebeccapurple;
-    cursor: pointer;
-}
-#counter:active{
-    color: #FFFFFF;
-    cursor: pointer;
-}
