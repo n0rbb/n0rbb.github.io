@@ -9,17 +9,6 @@
     <body>
         <h1>Norbb's website</h1>
         <p class = "central">Now <span id = "counter"></span> days without listening to Radiohead.</p>
-        <script type="text/javascript">
-          function daysDifference($startDate, $endDate) {
-            oneDay = 24*60*60*1000;
-            return Math.ceil(($endDate.getTime() - $startDate.getTime()) / oneDay - 1);  
-          }
-      
-         // month goes from 0-11
-          $startDate = new Date(2022, 7, 29);
-          $today = new Date();
-          document.getElementById("counter").innerHTML = daysDifference($startDate, $today);
-        </script>
         <footer> &copy; Norbert Shackleton, 2022</footer>
     </body>
 </html>
