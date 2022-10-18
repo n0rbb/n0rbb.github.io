@@ -1,9 +1,21 @@
+img{
+	display: inline-block;
+	margin-left: 10%;
+	width: 20%;
+	vertical-align: bottom;
+	border: #437CA5 solid 10px;
+
+
+}
+
 .presentation{
 	width: 30%;
 	margin-left: 15%;
 	margin-top: 60px;
+	vertical-align: top;
 	text-align: justify;
     font-family: 'Poppins', sans-serif;
+    display: inline-block;
 }
 
 #ctb{
@@ -14,7 +26,7 @@
 }
 ul.contact{
 	list-style-type: None;
-    margin: 0;
+    margin-top: 100px;
     padding: 0;
     overflow: hidden; 
     border-radius: 4px;
