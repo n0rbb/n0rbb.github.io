@@ -27,7 +27,7 @@ p{
     font-size: 20px;
 }
 
-ul{
+ul.navbut{
     list-style-type: None;
     margin: 0;
     padding: 0;
@@ -35,11 +35,11 @@ ul{
     background-color: #437CA5; 
     border-radius: 4px;
 }
-li{
+ul.navbut li{
     float: left;
 }
 
-li a{
+ul.navbut li a{
     color: white;
     display: block;
     text-align: center;
