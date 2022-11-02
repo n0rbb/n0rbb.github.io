@@ -7,6 +7,14 @@ img{
 	border-radius: 200px;
 
 }
+.number{
+	font-family: 'Secular One', sans-serif;
+    color: #327DB6;
+    font-size: 70px;
+    vertical-align: middle;
+    text-shadow: 2px 2px 2px #333333;
+}
+
 
 .presentation{
 	width: 30%;
@@ -21,6 +29,7 @@ img{
 #ctb{
 	position: absolute;
 	left: 50%;
+	bottom: 10px;
 	-ms-transform: translate(-50%, -50%);
   	transform: translate(-50%, -50%);
 }
@@ -59,3 +68,4 @@ ul.contact li a:hover{
 	background-color: #C78E65;
 	border: #A56C43 solid 4px;
 }
+
