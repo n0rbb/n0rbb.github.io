@@ -1,6 +1,6 @@
 function daysDifference($startDate, $endDate) {
     oneDay = 24*60*60*1000;
-    return Math.ceil(($endDate.getTime() - $startDate.getTime()) / oneDay - 1);
+    return Math.ceil(($endDate.getTime() - $startDate.getTime()) / oneDay - 1) - 4;
 }
 
 function countig(){
