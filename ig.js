@@ -5,6 +5,9 @@ function daysDifference($startDate, $endDate) {
 
 function countig(){
     $startDateIg = new Date(2022, 11, 28);
+    $startDateXen = new Date(2023, 0, 4);
     $today = new Date();
+
     document.getElementById("counterig").innerHTML = daysDifference($startDateIg, $today);
+    document.getElementById("counterxen").innerHTML = daysDifference($startDateXen, $today);
 }
