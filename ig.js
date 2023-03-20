@@ -9,5 +9,5 @@ function countig(){
     $today = new Date();
 
     document.getElementById("counterig").innerHTML = daysDifference($startDateIg, $today);
-    document.getElementById("counterxen").innerHTML = daysDifference($startDateXen, $today);
+    // document.getElementById("counterxen").innerHTML = daysDifference($startDateXen, $today);
 }
