@@ -4,7 +4,7 @@ function daysDifference($startDate, $endDate) {
 }
 
 function countig(){
-    $startDateIg = new Date(2022, 11, 28);
+    $startDateIg = new Date(2023, 2, 20);
     $startDateXen = new Date(2023, 0, 4);
     $today = new Date();
 
