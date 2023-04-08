@@ -9,22 +9,32 @@ h1{
     color: #216CA5;
     text-decoration: None;
     font-family: 'Poppins', sans-serif;
-    font-size: 40px;
+    font-size: 45px;
     font-weight: bold;
    
 }
 
 footer{
-    width: 100%;
+    border-radius: 4px;
+    width: calc(100% - 15px);
     position: fixed;
     bottom: 10px;
     padding-top: 10px;
     font-size: 14px;
-
+    background-color: #437CA5;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #EEEEEE;
+    display: flex;
+    justify-content: center;
 }
 
-p{
+body p{
     font-size: 20px;
+}
+
+#news p{
+    font-size: 15px;
 }
 
 ul.navbut{
@@ -70,4 +80,25 @@ a:hover{
 }
 #counter:active{
     color: white;
+}
+
+
+
+#news{
+    margin: auto;
+    background-color: #aef5b6;
+    display: block;
+    min-width: 500px;
+    width: 70%;
+    text-align: center;
+    border: 7px solid #0CA010;
+    border-radius: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.newstitle{
+    color: #0B9010;
+    text-decoration: None;
+    font-size: 30px;
+    font-weight: bold;
 }

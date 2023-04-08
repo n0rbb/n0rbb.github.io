@@ -2,7 +2,7 @@ img{
 	display: inline-block;
 	margin-left: 10%;
 	width: 20%;
-	vertical-align: bottom;
+	vertical-align: top;
 	border: #437CA5 solid 10px;
 	border-radius: 200px;
 
@@ -12,7 +12,7 @@ img{
 	width: 30%;
 	margin-left: 15%;
 	margin-top: 60px;
-	vertical-align: top;
+	vertical-align: bottom;
 	text-align: justify;
     font-family: 'Poppins', sans-serif;
     display: inline-block;
