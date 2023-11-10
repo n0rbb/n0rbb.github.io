@@ -16,8 +16,8 @@ img{
 	margin-top: 60px;
 	vertical-align: bottom;
 	text-align: justify;
-    font-family: 'Poppins', sans-serif;
-    display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  display: inline-block;
 }
 
 
@@ -27,15 +27,15 @@ img{
 }
 #ctb{
 	position: absolute;
-	left: 50%;
-	-ms-transform: translate(-50%, -50%);
-  	transform: translate(-50%, -50%);
+	left: 0%;
+  -ms-transform: translate(25%, -50%);
+  transform: translate(25%,-50%); 
 }
 ul.contact{
-    list-style-type: None;
-    padding: 0;
-    overflow: hidden; 
-    border-radius: 4px;
+  list-style-type: None;
+  padding: 0;
+  overflow: hidden; 
+  border-radius: 4px;
 
 }
 
@@ -47,12 +47,13 @@ ul.contact li{
 
 ul.contact li a{
 	color: white;
-    display: inline-block;
-    text-align: center;
-    text-decoration: None;
-    padding: 14px 24px;
-    border-radius: 100px;
-    font-family: 'Poppins', sans-serif;
+  display: inline-block;
+  text-align: center;
+  text-decoration: None;
+  padding: 14px 24px;
+  border-radius: 100px;
+  width: 160px;
+  font-family: 'Poppins', sans-serif;
 }
 
 ul.contact li a:link, ul.contact li a:visited{

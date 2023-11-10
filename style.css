@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Secular+One');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap'); /* OJO */
+
+@font-face {
+    font-family: Poppins;
+    src: url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap') format('woff');
+    font-weight: bold;
+  }
+  
+@font-face {
+    font-family: Poppins;
+    src: url('https://fonts.googleapis.com/css?family=Poppins') format('woff');
+    font-weight: normal;
+  }
 
 body{
     background-color: #89CFF0;
@@ -10,8 +23,12 @@ h1{
     text-decoration: None;
     font-family: 'Poppins', sans-serif;
     font-size: 45px;
-    font-weight: bold;
+    font-weight: normal;
    
+}
+span.nb{
+    font-weight: bold;
+    text-shadow: 2px 2px 2px #333333;
 }
 
 footer{
@@ -71,7 +88,8 @@ a:hover{
 }
 
 #counter{
-    font-family: 'Secular One', sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     color: #327DB6;
     font-size: 70px;
     vertical-align: middle;
