@@ -4,7 +4,7 @@ function daysDifference($startDate, $endDate) {
 }
 
 function count() {
-    $startDateTw = new Date(2023, 10, 28);
+    $startDateTw = new Date(2023, 11, 10);
     $today = new Date();
     document.getElementById("counter").innerHTML = daysDifference($startDateTw, $today);
 }
