@@ -67,6 +67,9 @@
     <h1>Mario de Miguel Domínguez</h1>
     <p>Physicist | Drummer | Engineer</p>
   </header>
+  <section>
+    <center><h2><span id ="dayCount">33</span> days since last MATLAB crash</h2></center>
+  </section>
 
   <section>
     <h2>About Me</h2>
@@ -108,6 +111,23 @@
   <footer>
     <p>&copy; 2025 Mario de Miguel. All rights reserved.</p>
   </footer>
+  
 
+  <script>
+    function daysBetween(startDate, endDate) {
+      const start = new Date(Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate()));
+      const end = new Date(Date.UTC(endDate.getFullYear(), endDate.getMonth(), endDate.getDate()));
+      
+      const diffDays = (end - start) / 86400000;
+      return diffDays;
+    }
+
+    const startDate = new Date("2024-12-29");
+    const today = new Date();
+
+    const days = daysBetween(startDate, today);
+
+    document.getElementById("dayCount").textContent = days;
+  </script>
 </body>
 </html>
