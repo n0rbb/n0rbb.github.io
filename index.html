@@ -5,149 +5,330 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mario De Miguel</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rye&family=Roboto+Slab:wght@400;500;600;700&display=swap');
+
+    :root {
+      --leather: #542f20;
+      --dark-wood: #291a13;
+      --wood: #70452c;
+      --brass: #c49a50;
+      --parchment: #ead9b5;
+      --paper: #f5e9cf;
+      --ink: #302117;
+      --rust: #963f27;
+    }
+
+    /* GENERAL */
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      color: #333;
+      font-family: 'Roboto Slab', serif;
+      background-color: var(--parchment);
+      color: var(--ink);
+      background-image:
+        radial-gradient(ellipse at center, transparent 40%, rgba(75, 40, 20, 0.12) 100%);
+      line-height: 1.7;
     }
+
+    /* HEADER */
 
     header {
-      background-color: #293b4d;
-      color: white;
-      padding: 2rem;
+      background-color: var(--dark-wood);
+      color: var(--parchment);
+      padding: 3rem 2rem;
       text-align: center;
+      border-bottom: 6px solid var(--brass);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    section {
-      max-width: 1000px;
-      margin: 2rem auto;
+    header h1,
+    h2 {
+      font-family: 'Rye', serif;
+      letter-spacing: 2px;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      color: var(--brass);
+      text-transform: uppercase;
+    }
+
+    /* PAGE LAYOUT */
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
       padding: 1rem;
+    }
+
+    .main-content {
+      min-width: 0;
+    }
+
+    .main-content > section {
+      margin: 0 0 2rem 0;
+    }
+
+    /* ABOUT */
+
+    .about-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      background-color: rgba(245, 233, 207, 0.65);
+      border: 2px solid var(--wood);
+      box-shadow: 6px 6px 0 rgba(65, 38, 20, 0.15);
+    }
+
+    .about-image img {
+      display: block;
+      max-width: 100%;
+      height: 500px;
+      object-fit: contain;
+      border: 5px solid var(--wood);
+      outline: 2px solid var(--brass);
+      outline-offset: 4px;
+      margin:   15px;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .about-text h2 {
+      color: var(--rust);
+      border-bottom: 3px solid var(--brass);
+      padding-bottom: 0.5rem;
+    }
+
+    /* PROJECTS */
+
+    #projects h2 {
+      color: var(--rust);
     }
 
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
     .project-card {
-      background: white;
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background-color: var(--paper);
+      padding: 1.5rem;
+      border: 2px solid var(--wood);
+      border-radius: 3px;
+      box-shadow: 4px 5px 0 rgba(65, 38, 20, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+
+    .project-card:hover {
+      transform: translateY(-5px) rotate(-0.5deg);
+      box-shadow: 7px 9px 0 rgba(65, 38, 20, 0.25);
+    }
+
+    .project-card h3 {
+      font-family: 'Rye', serif;
+      color: var(--rust);
+    }
+
+    /* CONTACT */
 
     .contact {
-      background: #ecf0f1;
+      background-color: #ddc49a;
       padding: 2rem;
-      border-radius: 8px;
+      border: 3px double var(--wood);
+      border-radius: 4px;
+      box-shadow: inset 0 0 25px rgba(80, 45, 20, 0.12);
+      margin-top: 0;
+      align-self: start;
     }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #2c3e50;
-      color: white;
+    .contact h2 {
+      color: var(--rust);
+      border-bottom: 3px solid var(--brass);
+      padding-bottom: 0.5rem;
     }
+
+    /* LINKS */
 
     a {
-      color: #2980b9;
+      color: var(--rust);
       text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px dashed var(--rust);
+      transition: color 0.2s;
     }
 
     a:hover {
-      text-decoration: underline;
+      color: var(--wood);
+      border-bottom-style: solid;
     }
 
-    .about-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
-}
+    /* BUTTONS */
 
-.about-image img {
-  max-width: 100%;
-  height: 400px;
-  object-fit: contain;
-}
+    button {
+      font-family: 'Rye', serif;
+      background-color: var(--leather);
+      color: var(--parchment);
+      border: 2px solid var(--brass);
+      padding: 0.8rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
 
-.about-text {
-  flex: 1;
-}
+    button:hover {
+      background-color: var(--rust);
+    }
 
-/* Medium and large screens */
-@media (min-width: 768px) {
-  .about-container {
-    flex-direction: row;
-    align-items: center;
-    gap: 3rem;
-  }
+    /* FOOTER */
 
-  .about-image,
-  .about-text {
-    flex: 1;
-  }
-}
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background-color: var(--dark-wood);
+      color: var(--parchment);
+      border-top: 5px solid var(--brass);
+    }
+
+    /* RESPONSIVE LAYOUT */
+    /* Small screens */
+    @media (max-width: 767px) {
+      .page-layout {
+        padding: 0.5rem;
+      }
+
+      .about-container {
+        padding: 2rem 0.5rem;
+        gap: 1.5rem;
+      }
+
+      .about-image {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .about-image img {
+        max-width: 100%;
+        height: auto;
+        max-height: 350px;
+        object-fit: contain;
+      }
+
+      .main-content > section {
+        margin: 1rem 0;
+      }
+    }
+
+    /* Medium screens: About Me side by side */
+
+    @media (min-width: 768px) {
+      .about-container {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .about-image {
+        flex: 0 0 auto;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+    }
+
+    /* Large screens: Contact on the right */
+
+    @media (min-width: 1024px) {
+      .page-layout {
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header>
     <h1>Mario de Miguel Domínguez</h1>
-    <p>FPGA Design Cowboy</p>
+    <h2>FPGA Cowboy</h2>
+    <p>Now <span id ="dayCount">33</span> days without crashing Vivado</p>
   </header>
-  <div class="about-container">
-  <section class="about-image">
-    <img src="assets/images/about/me.png" alt="Mario">
-  </section>
+ <div class="page-layout">
 
-  <section class="about-text">
-    <h2>About Me</h2>
-    <p>
-      Hello there! <br>
-      I'm Mario. I studied a BSc. in Applied Physics at Complutense
-      University of Madrid, and a MEng. in Electronic Systems Engineering
-      in the Polytechnic University of Madrid. I regard myself as a curious
-      person, who enjoys learning-by-making, and is more than eager to
-      contribute to modern technological development. <br>
-      My interests go from semiconductor and device-level physics to FPGA
-      and embedded development.
-    </p>
-  </section>
-</div>
+    <main class="main-content">
+      <section class="about-container">
+        <div class="about-image">
+          <img src="assets/images/about/me.png" alt="Mario">
+        </div>
+        <div class="about-text">
+          <h2>About Me</h2>
+          <p>
+            Hello there!<br>
+            Name's Mario. I studied a BSc. in Applied Physics at
+            Complutense University of Madrid, and a MEng. in
+            Electronic Systems Engineering at the Polytechnic
+            University of Madrid. <br>
 
-  <!-- <section>
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Project One</h3>
-        <p>A short description of the project.</p>
-        <a href="#">View Project</a>
-      </div>
-      <div class="project-card">
-        <h3>Project Two</h3>
-        <p>A short description of the project.</p>
-        <a href="#">View Project</a>
-      </div>
-      <div class="project-card">
-        <h3>Project Three</h3>
-        <p>A short description of the project.</p>
-        <a href="#">View Project</a>
-      </div>
-    </div>
-  </section> -->
+            I regard myself as a curious person, who enjoys
+            learning-by-making, and is more than eager to
+            contribute to modern technological development. <br>
 
-  <section class="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:mdemig02@gmail.com">mdemig02@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/mdemig">linkedin.com/in/mdemig</a></p>
-    <p>GitHub: <a href="https://github.com/n0rbb">github.com/n0rbb</a></p>
-  </section>
+            My interests go from semiconductor and device-level
+            physics to FPGA and embedded systems engineering. <br>
+            
+            I'm also an amateur drummer/bassist who likes Westerns.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROJECTS 
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects">
+          <div class="project-card">
+            <h3>Project One</h3>
+            <p>A short description of the project.</p>
+            <a href="#">View Project</a>
+          </div>
+
+          <div class="project-card">
+            <h3>Project Two</h3>
+            <p>A short description of the project.</p>
+            <a href="#">View Project</a>
+          </div>
+
+          <div class="project-card">
+            <h3>Project Three</h3>
+            <p>A short description of the project.</p>
+            <a href="#">View Project</a>
+          </div>
+        </div>
+      </section> -->
+    </main>
+
+    <!-- CONTACT -->
+    <aside class="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:mdemig02@gmail.com">mdemig02@gmail.com</a></p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/mdemig">linkedin.com/in/mdemig</a></p>
+      <p>GitHub: <a href="https://github.com/n0rbb">github.com/n0rbb</a></p>
+
+    </aside>
+
+  </div>
 
   <footer>
     <p>&copy; 2026 Mario de Miguel. All rights reserved.</p>
@@ -163,7 +344,7 @@
       return diffDays;
     }
 
-    const startDate = new Date("2026-09-24");
+    const startDate = new Date("2026-11-03");
     const today = new Date();
 
     const days = daysBetween(startDate, today);
