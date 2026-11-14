@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Trail So Far</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Roboto+Slab:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --red: #a52f25;
+  --leather: #542f20;
+  --dark-wood: #291a13;
+  --wood: #70452c;
+  --brass: #c49a50;
+  --parchment: #ead9b5;
+  --paper: #f5e9cf;
+  --ink: #302117;
+  --rust: #963f27;
+  
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  font-family: "Roboto Slab", serif;
+  background: #b99a6d;
+}
+
+/* HEADER */
+
+header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  background: #38271c;
+  color: var(--paper);
+  border-bottom: 7px solid var(--brass);
+}
+
+header h1 {
+  font-family: "Rye", serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+header p {
+  margin: .8rem 0 0;
+  color: #d8bd8d;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: .8rem;
+}
+
+.main-button {
+  font-family: 'Rye', serif;
+  background-color: var(--leather);
+  color: var(--parchment);
+  border: 2px solid var(--brass);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.main-button:hover {
+  background-color: var(--rust);
+}
+
+/* MAP */
+
+.map {
+  position: relative;
+  width: min(100%, 1000px);
+  min-height: 500px;
+  margin: 2rem auto;
+  overflow: hidden;
+  border: 12px solid var(--wood);
+  border-radius: 4px;
+
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(
+      ellipse at 20% 20%,
+      #f4e5c5 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at 80% 70%,
+      #d5bb8d 0%,
+      transparent 50%
+    ),
+    repeating-linear-gradient(
+      15deg,
+      transparent 0px,
+      transparent 35px,
+      rgba(90, 60, 30, .035) 36px,
+      transparent 38px
+    );
+
+  box-shadow:
+    0 10px 30px #38271c66,
+    inset 0 0 80px #8b633c55;
+}
+
+/* TERRAIN */
+
+.terrain {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .25;
+  pointer-events: none;
+}
+
+.terrain path {
+  fill: none;
+  stroke: #806343;
+  stroke-width: 1.5;
+}
+
+/* DYNAMIC TRAIL */
+
+.trail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.trail-base {
+  fill: none;
+  stroke: #f4e5c5;
+  stroke-width: 13;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.trail-line {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 5;
+  stroke-dasharray: 13 12;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* MAP DECORATIONS */
+
+.compass {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  text-align: center;
+  font-family: "Rye", serif;
+  font-size: 2.8rem;
+  color: #795b38;
+  opacity: .75;
+  pointer-events: none;
+}
+
+.compass small {
+  display: block;
+  font-size: .7rem;
+  letter-spacing: 2px;
+}
+
+.map-label {
+  position: absolute;
+  font-family: "Rye", serif;
+  color: #806343;
+  opacity: .65;
+  letter-spacing: 2px;
+  font-size: .8rem;
+  pointer-events: none;
+}
+
+.label-one {
+  top: 250px;
+  left: 8%;
+  transform: rotate(-12deg);
+}
+
+.label-two {
+  top: 850px;
+  right: 8%;
+  transform: rotate(10deg);
+}
+
+.label-three {
+  top: 1450px;
+  left: 10%;
+  transform: rotate(-8deg);
+}
+
+.landmark {
+  position: absolute;
+  z-index: 1;
+  font-size: 2rem;
+  opacity: .65;
+  pointer-events: none;
+}
+
+.landmark-1 { top: 22%; left: 12%; }
+.landmark-2 { top: 37%; right: 12%; }
+.landmark-3 { top: 64%; left: 10%; }
+.landmark-4 { top: 72%; right: 12%; }
+.landmark-5 { top: 91%; left: 25%; }
+
+/* TOWNS */
+
+.town {
+  position: absolute;
+  z-index: 2;
+  width: 250px;
+  transform: translate(-50%, -50%);
+}
+
+.town button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+
+.town-icon {
+  display: block;
+  font-size: 3.2rem;
+  filter: drop-shadow(2px 3px 2px #38271c55);
+  transition: transform .2s;
+}
+
+.town button:hover .town-icon {
+  transform: translateY(-7px) scale(1.12);
+}
+
+.town-name {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 7px 13px;
+  background: #f3e4c4;
+  border: 2px solid #806343;
+  box-shadow: 2px 3px 0 #38271c44;
+  font-family: "Rye", serif;
+  font-size: 1rem;
+}
+
+.town-description {
+  display: block;
+  margin-top: 5px;
+  font-size: .75rem;
+  font-weight: 600;
+}
+
+/* CURRENT POSITION: THE COWBOY */
+
+.cowboy-marker {
+  position: absolute;
+  z-index: 100;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  filter: drop-shadow(2px 4px 3px #38271c88);
+  cursor: default;
+  animation: cowboy-float 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.cowboy-label {
+  display: block;
+  margin-top: -3px;
+  padding: 4px 7px;
+  background: var(--red);
+  color: #fff2d5;
+  border: 1px solid #6e251d;
+  border-radius: 3px;
+  font-family: "Roboto Slab", serif;
+  font-size: .55rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+@keyframes cowboy-float {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -6px;
+  }
+}
+
+/* POPUP */
+
+dialog {
+  width: min(90%, 520px);
+  padding: 2rem;
+  border: 8px double #806343;
+  background: #f3e4c4;
+  color: var(--ink);
+  box-shadow: 0 15px 50px #0008;
+}
+
+dialog::backdrop {
+  background: #21170fc2;
+}
+
+dialog h2 {
+  font-family: "Rye", serif;
+  margin-top: 0;
+}
+
+dialog h3 {
+  font-size: .9rem;
+  color: #79502e;
+}
+
+dialog p {
+  line-height: 1.7;
+}
+
+dialog li {
+  margin: .4rem 0;
+}
+
+.close-button {
+  margin-top: 1rem;
+  padding: .7rem 1.3rem;
+  background: #68432d;
+  color: white;
+  border: 2px solid #38271c;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+#popup-skills {
+  padding-left: 1.2rem;
+}
+
+#popup-skills li {
+  background: var(--wood);
+  color: var(--paper);
+  display: inline-block;
+  padding: 0.35rem 0.7rem;
+  margin: 0.25rem;
+  border-radius: 4px;
+  list-style: none;
+}
+
+.position-entry {
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--brass);
+}
+
+.position-entry:last-child {
+  border-bottom: none;
+}
+
+.position-entry h3 {
+  margin-bottom: 0.3rem;
+}
+
+.position-entry .period {
+  color: var(--rust);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+
+/* FOOTER */
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #38271c;
+  color: var(--paper);
+  font-family: "Rye", serif;
+  letter-spacing: 2px;
+}
+
+/* MOBILE */
+
+@media (max-width: 650px) {
+  .map {
+    margin: 1rem auto;
+    border-width: 6px;
+  }
+
+  .town {
+    width: 190px;
+  }
+
+  .town-icon {
+    font-size: 2.5rem;
+  }
+
+  .town-name {
+    font-size: .85rem;
+  }
+
+  .compass {
+    right: 12px;
+    top: 15px;
+    font-size: 2rem;
+  }
+
+  .map-label {
+    font-size: .6rem;
+  }
+
+  .cowboy-marker {
+    font-size: 2.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cowboy-marker {
+    animation: none;
+  }
+
+  .town-icon {
+    transition: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Mario de Miguel Domínguez</h1>
+  <h2>FPGA Cowboy</h2>
+  <h1>The Trail So Far</h1>
+</header>
+  
+
+
+
+<div class="map" id="career-map">
+
+  <!-- Terrain contours -->
+  <svg class="terrain"
+       viewBox="0 0 900 2000"
+       preserveAspectRatio="none">
+
+    <path d="M-50 180 Q100 80 240 180 T500 150 T950 220"/>
+    <path d="M-50 205 Q100 105 240 205 T500 175 T950 245"/>
+    <path d="M-50 230 Q100 130 240 230 T500 200 T950 270"/>
+
+    <path d="M-50 700 Q150 580 300 700 T600 680 T950 730"/>
+    <path d="M-50 725 Q150 605 300 725 T600 705 T950 755"/>
+    <path d="M-50 750 Q150 630 300 750 T600 730 T950 780"/>
+
+    <path d="M-50 1200 Q120 1080 270 1200 T570 1170 T950 1240"/>
+    <path d="M-50 1225 Q120 1105 270 1225 T570 1195 T950 1265"/>
+
+    <!--<path d="M-50 1700 Q150 1580 300 1700 T600 1680 T950 1730"/>
+    <path d="M-50 1725 Q150 1605 300 1725 T600 1705 T950 1755"/>-->
+  </svg>
+
+  <!-- Dynamic trail -->
+  <svg class="trail" id="trail-svg"
+       preserveAspectRatio="none">
+    <path class="trail-base" id="trail-base"></path>
+    <path class="trail-line" id="trail-line"></path>
+  </svg>
+
+  <!-- Map decorations -->
+  <div class="compass">✥<small>N</small></div>
+
+  <!--<div class="map-label label-one">THE NORTHERN HILLS</div>
+  <div class="map-label label-two">THE OLD FRONTIER</div>
+  <div class="map-label label-three">THE SOUTHERN PLAINS</div> -->
+
+  <div class="landmark landmark-1">🌲</div>
+  <div class="landmark landmark-2">⛰️</div>
+  <div class="landmark landmark-3">🌵</div>
+  <div class="landmark landmark-4">🌲</div>
+  <div class="landmark landmark-5">🌵</div>
+
+  <!-- Towns are generated here -->
+  <div id="town-container"></div>
+
+  <!-- Current position marker -->
+  <div class="cowboy-marker" id="cowboy-marker"
+       title="You are here!">
+    🤠
+    <span class="cowboy-label">FIND ME HERE!</span>
+  </div>
+
+</div>
+<div align="center">
+  <button class="main-button" type="button" onclick="window.location.href='index.html'">
+  ← Back to Home
+  </button>
+</div>
+<!-- Experience popup -->
+<dialog id="experience-popup">
+  <h2 id="popup-title"></h2>
+  <h3 id="popup-subtitle"></h3>
+  <div id="popup-description"></div>
+
+  <h3>Skills acquired</h3>
+  <ul id="popup-skills"></ul>
+
+  <button class="close-button" onclick="closeExperience()">
+    Back to the Trail
+  </button>
+</dialog>
+
+<footer>
+  <p>&copy; 2026 Mario de Miguel. All rights reserved.</p>
+</footer>
+
+<script>
+
+/*
+ * EXPERIENCE DATA
+ *
+ * Add new experiences to this array.
+ *
+ * y: vertical position in pixels
+ * x: horizontal position as a percentage
+ *
+ * The trail and map height are generated automatically.
+ */
+
+const experiences = [
+  {
+    company: "Akkodis",
+    icon: "✈️",
+    x: 67,
+    y: 200,
+
+    skills: [
+      "Xilinx Platforms",
+      "VHDL",
+      "Embedded Linux",
+      "Ethernet",
+      "TSN Standards"
+    ],
+
+    positions: [
+      {
+        title: "FPGA Engineer for Airbus D&S",
+        period: "2026 – Present",
+        description: "Implementation of high-speed communication systems (100Mb/1Gb/10Gb ethernet) for aircraft."
+      }
+    ]
+  },
+  {
+    company: "Carlos III University of Madrid",
+    icon: "🔬",
+    x: 30,
+    y: 580,
+
+    skills: [
+      "Python",
+      "STM32",
+      "Altium Designer"
+    ],
+
+    positions: [
+      {
+        title: "Research Engineer",
+        period: "2026",
+        description: "Research on agricultural applications of halide perovskite LEDs."
+      }
+    ]
+  },
+
+  {
+    company: "Institute of Applied Magnetism",
+    icon: "🔬",
+    x: 67,
+    y: 960,
+
+    skills: [
+      "PCB Design",
+      "ESP32",
+      "iCE40UP FPGA",
+      "RF Electronics"
+    ],
+
+    positions: [
+      {
+        title: "Research Technician",
+        period: "2024-2025",
+        description: "Electronic nose research and development."
+      }, 
+      {
+        title: "Research Grant Recipient",
+        period: "2023-2024", 
+        description: "Collaboration in University Departments grant awarded by the Spanish Ministry of Education to participate in research projects of university departments."
+
+      }
+    ]
+  }
+];
+
+const map = document.getElementById("career-map");
+const townContainer = document.getElementById("town-container");
+const trailSvg = document.getElementById("trail-svg");
+const trailBase = document.getElementById("trail-base");
+const trailLine = document.getElementById("trail-line");
+const cowboy = document.getElementById("cowboy-marker");
+const popup = document.getElementById("experience-popup");
+const popupTitle = document.getElementById("popup-title");
+const popupSubtitle = document.getElementById("popup-subtitle");
+const popupDescription = document.getElementById("popup-description");
+const popupSkills = document.getElementById("popup-skills");
+
+
+function openPopup(index) {
+  const experience = experiences[index];
+
+  // Town heading
+  popupTitle.textContent =
+    `${experience.icon} ${experience.company}`;
+
+  // Number of positions
+  popupSubtitle.textContent =
+    experience.positions.length === 1
+      ? ''
+      : `${experience.positions.length} positions`;
+
+  // Individual positions
+  popupDescription.innerHTML =
+    experience.positions.map(position => `
+      <div class="position-entry">
+        <h3>${position.title}</h3>
+        <p class="period">${position.period}</p>
+        <p>${position.description}</p>
+      </div>
+    `).join("");
+
+  // Town skills
+  popupSkills.innerHTML =
+    experience.skills.map(skill => `
+      <li>${skill}</li>
+    `).join("");
+
+  popup.showModal();
+}
+
+/* Create all towns from the data */
+
+function createTowns() {
+  townContainer.innerHTML = "";
+
+  experiences.forEach((experience, index) => {
+    const town = document.createElement("div");
+    town.className = "town";
+
+    town.style.left = `${experience.x}%`;
+    town.style.top = `${experience.y}px`;
+
+    town.innerHTML = `
+      <button class="town-button" onclick="openPopup(${index})">
+        <span class="town-icon">${experience.icon}</span>
+        <span class="town-name">${experience.company}</span>
+      </button>
+    `;
+
+    townContainer.appendChild(town);
+  });
+}
+
+
+
+/* Position towns and dynamically size the map */
+
+/* Position towns and dynamically size the map */
+
+function updateMap() {
+  if (!experiences.length) return;
+
+  const lastExperience = experiences[experiences.length - 1];
+  const mapHeight = lastExperience.y + 250;
+
+  map.style.height = `${mapHeight}px`;
+
+  const isMobile = window.matchMedia("(max-width: 650px)").matches;
+
+  const towns = [...townContainer.querySelectorAll(".town")];
+
+  towns.forEach((town, index) => {
+    const experience = experiences[index];
+
+    town.style.left = isMobile
+      ? "65%"
+      : `${experience.x}%`;
+  });
+
+  // Wait until the browser has applied the new positions.
+  requestAnimationFrame(() => {
+    updateTrail();
+    updateCowboy();
+  });
+}
+
+
+/* Convert an element's rendered position into map coordinates */
+
+function getMapPosition(element) {
+  const rect = element.getBoundingClientRect();
+  const mapRect = map.getBoundingClientRect();
+
+  // The SVG and absolutely positioned elements start
+  // at the map's inner border edge.
+  const originX = mapRect.left + map.clientLeft;
+  const originY = mapRect.top + map.clientTop;
+
+  return {
+    x: rect.left + rect.width / 2 - originX,
+    y: rect.top + rect.height / 2 - originY
+  };
+}
+
+
+/* Generate a curved trail through the actual town icons */
+
+function updateTrail() {
+  const townIcons = [
+    ...townContainer.querySelectorAll(".town-icon")
+  ];
+
+  if (townIcons.length < 2) return;
+
+  const width = map.clientWidth;
+  const height = map.clientHeight;
+
+  trailSvg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+
+  const points = townIcons.map(getMapPosition);
+
+  let path = `M ${points[0].x} ${points[0].y}`;
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const current = points[i];
+    const next = points[i + 1];
+
+    const middleY = (current.y + next.y) / 2;
+
+    path += `
+      C ${current.x} ${middleY},
+        ${next.x} ${middleY},
+        ${next.x} ${next.y}
+    `;
+  }
+
+  trailBase.setAttribute("d", path);
+  trailLine.setAttribute("d", path);
+}
+
+
+/* Keep the cowboy directly above the current town */
+
+function updateCowboy() {
+  const firstTownIcon = townContainer.querySelector(".town-icon");
+
+  if (!firstTownIcon) return;
+
+  const position = getMapPosition(firstTownIcon);
+
+  cowboy.style.left = `${position.x}px`;
+  cowboy.style.top = `${position.y - 75}px`;
+}
+/* Experience popup */
+
+function closeExperience() {
+  popup.close();
+}
+
+
+/* Initialise */
+
+createTowns();
+updateMap();
+
+/* Recalculate when the screen changes size */
+
+window.addEventListener("resize", updateMap);
+
+</script>
+
+</body>
+</html>
