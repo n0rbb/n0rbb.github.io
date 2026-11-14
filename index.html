@@ -59,6 +59,40 @@
     a:hover {
       text-decoration: underline;
     }
+
+    .about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: 400px;
+  object-fit: contain;
+}
+
+.about-text {
+  flex: 1;
+}
+
+/* Medium and large screens */
+@media (min-width: 768px) {
+  .about-container {
+    flex-direction: row;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .about-image,
+  .about-text {
+    flex: 1;
+  }
+}
   </style>
 </head>
 <body>
@@ -67,20 +101,25 @@
     <h1>Mario de Miguel Domínguez</h1>
     <p>FPGA Design Cowboy</p>
   </header>
-  <section>
-    <center><h2><span id ="dayCount">33</span> days since last Vivado crash</h2></center>
+  <div class="about-container">
+  <section class="about-image">
+    <img src="assets/images/about/me.png" alt="Mario">
   </section>
-  <section>
-    <center><img src="assets/images/about/me.png" height = "400px"></center>
-  </section>
-  <section>
+
+  <section class="about-text">
     <h2>About Me</h2>
     <p>
       Hello there! <br>
-      I'm Mario. I studied a BSc. in Applied Physics at Complutense University of Madrid, and a MEng. in Electronic Systems Engineering in the Polythecnic University of Madrid. I regard myself as a courious person, who enjoys learning-by-making, and is more than eager to contribute to modern technological development. <br>
-      My interests go from semiconductor and device-level physics to FPGA and embedded development. 
+      I'm Mario. I studied a BSc. in Applied Physics at Complutense
+      University of Madrid, and a MEng. in Electronic Systems Engineering
+      in the Polytechnic University of Madrid. I regard myself as a curious
+      person, who enjoys learning-by-making, and is more than eager to
+      contribute to modern technological development. <br>
+      My interests go from semiconductor and device-level physics to FPGA
+      and embedded development.
     </p>
   </section>
+</div>
 
   <!-- <section>
     <h2>Projects</h2>
